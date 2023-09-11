@@ -19,6 +19,8 @@ app.use(cors({origin: '*'})); //For FCC testing purposes only
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const mySecret = process.env['NODE_ENV']
+
 //Index page (static HTML)
 app.route('/')
   .get(function (req, res) {
@@ -43,7 +45,7 @@ const port = process.env.PORT || 3000;
 //Start our server and tests!
 app.listen(port, function () {
   console.log("Listening on port " + port);
-  if(process.env.NODE_ENV==='test') {
+  if(mySecret==='test') {
     console.log('Running Tests...');
     setTimeout(function () {
       try {
